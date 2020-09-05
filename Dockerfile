@@ -16,7 +16,7 @@ RUN set -x \
       && unzip viewer.zip && cp -v dmarcts-report-viewer-master/* /var/www/viewer/ && rm -f viewer.zip \
       && sed -i "1s/^/body { font-family: Sans-Serif; }\n/" /var/www/viewer/default.css \
       && (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
-      && for i in \
+      && perl -MCPAN -e 'foreach (@ARGV) { CPAN::Shell->rematein("notest", "install", $_) }' \
         IO::Compress::Gzip \
         Getopt::Long \
 	Mail::IMAPClient \
@@ -33,7 +33,6 @@ RUN set -x \
 	Socket6 \
         PerlIO::gzip \
         IO::Socket::SSL \
-        ; do cpan install $i; done \
       && apk del mariadb-dev expat-dev \
       && apk add mariadb-client-libs \
       && sed -i 's%.*root /var/www/html;%        root /var/www/viewer;%g' /etc/nginx/conf.d/default.conf \
