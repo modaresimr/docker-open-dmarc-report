@@ -43,14 +43,17 @@ services:
       - "80:80"
     environment:
       - "REPORT_DB_HOST=db"
+      - "REPORT_DB_PORT=3306"
       - "REPORT_DB_NAME=dmarc_report"
       - "REPORT_DB_USER=dmarc_report"
       - "REPORT_DB_PASS=dbpassword"
-      - "PARSER_IMAP_SERVER_WITH_PORT=mail:143"
+      - "PARSER_IMAP_SERVER=mail"
+      - "PARSER_IMAP_SERVER_PORT=143"
       - "PARSER_IMAP_USER=foobar@example.com"
       - "PARSER_IMAP_PASS=foobar"
       - "PARSER_IMAP_READ_FOLDER=Inbox"
-      - "PARSER_IMAP_MOVE_FOLDER=processed"
+      - "PARSER_IMAP_MOVE_FOLDER=Inbox.processed"
+      - "PARSER_IMAP_MOVE_FOLDER_ERROR=Inbox.not_processed"
 
   db:
     image: mariadb:10
