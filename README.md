@@ -1,6 +1,6 @@
 # docker-dmarc-report [![Docker Pulls](https://img.shields.io/docker/pulls/gutmensch/dmarc-report.svg)](https://registry.hub.docker.com/u/gutmensch/dmarc-report/)
 
-This image is intended to combine a dmarc report parser (see https://github.com/techsneeze/dmarcts-report-parser by TechSneeze.com and John Bieling) with a report viewer (see https://github.com/techsneeze/dmarcts-report-viewer/ by the same people) into a runnable docker image / microservice.
+This image is intended to combine a dmarc report parser (see https://github.com/techsneeze/dmarcts-report-parser by TechSneeze.com and John Bieling) with two report viewer (see https://github.com/userjack6880/Open-DMARC-Analyzer and https://github.com/techsneeze/dmarcts-report-viewer/) into a runnable docker image / microservice.
 
 It fetches dmarc report mails regularly from an IMAP server, stores them into a MySQL DB and visualizes them via Webserver/PHP module.
 
@@ -34,7 +34,7 @@ version: '3.6'
 
 services:
   dmarc-report:
-    image: "gutmensch/dmarc-report:latest"
+    build: .
     hostname: dmarc-report
     container_name: dmarc-report
     depends_on:
@@ -71,3 +71,5 @@ Use SSL instead of default TLS. Set both to 0 to turn off encryption. (not recom
     - "PARSER_IMAP_TLS=0"
 ```
 
+# demo
+[[demo.png]]
