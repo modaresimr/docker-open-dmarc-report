@@ -34,9 +34,9 @@ version: '3.6'
 
 services:
   dmarc-report:
-    build: .
-    hostname: dmarc-report
-    container_name: dmarc-report
+    image: "modaresimr/docker-open-dmarc-report"
+    hostname: open-dmarc-report
+    container_name: open-dmarc-report
     depends_on:
       - db
     ports:
@@ -72,4 +72,4 @@ Use SSL instead of default TLS. Set both to 0 to turn off encryption. (not recom
 ```
 
 # demo
-[[demo.png]]
+!['demo'](https://raw.githubusercontent.com/modaresimr/docker-open-dmarc-report/master/demo.png)
